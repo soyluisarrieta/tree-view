@@ -2,7 +2,7 @@ import TreeViewPage from './pages/TreeViewPage'
 
 function App () {
   return (
-    <div className='min-h-screen bg-zinc-900 text-zinc-200'>
+    <div className='min-h-screen bg-gradient-to-b from-zinc-900 to-black text-zinc-200'>
       <TreeViewPage />
     </div>
   )
