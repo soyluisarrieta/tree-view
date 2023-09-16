@@ -1,7 +1,9 @@
+import TreeViewPage from './pages/TreeViewPage'
+
 function App () {
   return (
-    <div className='min-h-screen bg-zinc-900 py-5'>
-      <h1 className='text-center text-4xl font-bold text-sky-500'>Hi Tailwind!</h1>
+    <div className='min-h-screen bg-zinc-900 text-zinc-200'>
+      <TreeViewPage />
     </div>
   )
 }
