@@ -1,18 +1,15 @@
 :root {
-  --width-tree-view: 100%;
-
   --gap-x: 1rem;
-  --gap-y: 1rem; /* Issue when +1.5rem in last curves */
+  --gap-y: 1rem;
 
   --padding-content: 1.2rem;
   --padding-box: 1rem var(--padding-content);
   --rounded-box: 0.4rem;
 
-  --color-bg: #1e1e2f;
-  --color-lines: #2b2b3b;
+  --color-lines: #888888;
   --color-text: rgba(255, 255, 255, 0.88);
-  --color-box: #34344a;
-  --border-box: var(--color-lines) 1px;
+  --color-box: transparent;
+  --border-box: var(--color-lines) 2px;
 }
 
 * {
@@ -24,9 +21,8 @@
 
 /* Tree view */
 .tree-view {
-  width: var(--width-tree-view);
+  width: 100%;
   padding: 1rem;
-  background-color: var(--color-bg);
   color: var(--color-text);
   position: relative;
   z-index: 1;
@@ -39,8 +35,7 @@
 }
 
 /* Tree view list item */
-.tree-view > ul > li:first-child::after,
-.tree-view > ul > li:first-child::before {
+.tree-view > ul > li:first-child::after {
   display: none;
 }
 
@@ -53,11 +48,10 @@
 .tree-view .tree-body li ul li {
   position: relative;
   margin-left: calc(var(--gap-x) + 20px);
-  
 }
 
-.tree-view li::after,
-.tree-view .tree-body li:has(ul):last-child > .tree-item::after {
+.tree-view .tree-body li::after,
+.tree-view .tree-body li:has(ul):last-child .tree-item::after {
   content: '';
   width: 2px;
   height: 100%;
@@ -68,22 +62,22 @@
 }
 
 .tree-view .tree-body li:last-child::after,
-.tree-view .tree-body li:has(ul):last-child .tree-item::after {
+.tree-view .tree-body li:has(ul):last-child > .tree-item::after {
   height: calc(var(--gap-y) + 50%);
   top: calc(calc(0px - var(--gap-y)) - 15px);
 }
 
-.tree-view .tree-body li:has(ul):last-child::after {
+.tree-view .tree-body li:has(ul):last-child::after,
+.tree-view .tree-body li:not(:has(>ul)):last-child > .tree-item::after {
   height: 0;
 }
 
-/* Tree view item content */
-.tree-view li > .tree-item::before {
-  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 41 51.5' width='20px' fill='%232b2b3b'%3E%3Cpath d='M41,51.5H23.6C10.6,51.5,0,40.9,0,27.9L0.4,0h3.1L4,27.9c0,10.8,8.8,19.6,19.6,19.6H41V51.5z'%3E%3C/path%3E%3C/svg%3E");
+/* Tree view item curve */
+.tree-view .tree-body .tree-item .tree-curve {
   position: absolute;
   top: 50%;
   left: 0;
-  transform: translateY(-77%);
+  transform: translateY(-100%);
 }
 
 /* Tree view item */
@@ -114,7 +108,6 @@
 
 /* Tree view box */
 .tree-view .tree-box {
-  background-color: var(--color-box);
   border: var(--border-box) solid;
   border-radius: var(--rounded-box);
   padding: var(--padding-box);
