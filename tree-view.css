@@ -1,0 +1,116 @@
+:root {
+  --width-tree-view: 500px;
+
+  --gap-x: 1rem;
+  --gap-y: 1rem; /* <- Issue when +1.5rem in last curves */
+  
+  --padding-content: 1.2rem; 
+  --padding-box: 1rem var(--padding-content); 
+  --rounded-box: 0.4rem;
+
+  --color-bg: #1e1e2f;
+  --color-lines: #2b2b3b;
+  --color-text: rgba(255,255,255,0.88);
+  --color-box: #34344a;
+  --border-box: 1px var(--color-lines);
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Tree view */
+.tree-view {
+  width: var(--width-tree-view);
+  padding: 1rem;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  position: relative;
+  z-index: 1;
+}
+
+/* ul - Tree view */
+.tree-view ul {
+  list-style-type: none;
+}
+
+.tree-view > ul > li:first-child::after,
+.tree-view > ul > li:first-child::before {
+  display: none;
+}
+
+/* li - Tree view */
+.tree-view .tree-body li  {
+  position: relative;
+  margin-left: var(--gap-x);
+}
+
+.tree-view .tree-body li ul li {
+  position: relative;
+  margin-left: calc(var(--gap-x) + 20px);
+}
+
+.tree-view li::after {
+  content: '';
+  width: 2px;
+  height: 100%;
+  background-color: var(--color-lines);
+  position: absolute;
+  top: calc(var(--gap-y) * -1);
+  left: 0;
+}
+
+.tree-view .tree-body li:last-child::after {
+  height: 50%;
+  background-color: var(--color-lines);
+}
+
+.tree-view li > .tree-item::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 41 51.5' width='20px' fill='%232b2b3b'%3E%3Cpath d='M41,51.5H23.6C10.6,51.5,0,40.9,0,27.9L0.4,0h3.1L4,27.9c0,10.8,8.8,19.6,19.6,19.6H41V51.5z'%3E%3C/path%3E%3C/svg%3E");
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-77%);
+}
+
+/* item - Tree view */
+.tree-view .tree-item {
+  position: relative;
+}
+
+/* content - Tree view */
+.tree-view .tree-body {
+  padding-top: var(--gap-y);
+}
+
+.tree-view .tree-body .tree-item .tree-content {
+  padding: var(--gap-y) calc(var(--padding-content) + 1rem);
+}
+
+.tree-view .tree-body .tree-item .tree-content:has(.tree-box) {
+  padding: calc(var(--gap-y) - 0.8rem) 0;
+}
+
+.tree-view .tree-content,
+.tree-view .tree-box {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* box - Tree view */
+.tree-view .tree-box {
+  background-color: var(--color-box);
+  border: var(--border-box) solid;
+  border-radius: var(--rounded-box);
+  padding: var(--padding-box);
+}
+
+.tree-view .tree-body .tree-item .tree-box {
+  width: calc(100% - 20px);
+  margin-left: 20px;
+  padding-left: var(--padding-content);
+}
